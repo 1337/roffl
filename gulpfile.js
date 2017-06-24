@@ -1,60 +1,57 @@
-const {
-    gulp = require('gulp'),
-    data = require('gulp-data'),
-    stylus = require('gulp-stylus'),
-    sourcemaps = require('gulp-sourcemaps')
+const concat = require('gulp-concat');
+const gulp = require('gulp');
+const data = require('gulp-data');
+const livereload = require('gulp-livereload');
+const webserver = require('gulp-webserver');
+const stylus = require('gulp-stylus');
+const sourcemaps = require('gulp-sourcemaps');
+const ts = require('gulp-typescript');
+const tsOptions = 'tsconfig.json';
+const tsProject = ts.createProject(tsOptions);
+
+const paths = {
+    ts: ['src/js/**/*.ts'],
+    stylus: ['src/css/**/*.styl']
 };
 
 
+gulp.task('run-js', function () {
+    console.info('Updating TS...');
+
+    var tsResult = gulp.src(paths.ts)
+        .pipe(tsProject());
+
+    return tsResult.js
+            .pipe(concat('bundle.js'))
+            .pipe(gulp.dest('www/js'));
+});
+
+
+gulp.task('run-stylus', function () {
+    gulp.src(paths.stylus)
+        .pipe(stylus())
+        .pipe(gulp.dest('./www/css'));
+});
+
+
+gulp.task('run', ['run-js', 'run-stylus'], function () {
+    gulp.src('www/')
+        .pipe(webserver({
+            host: '0.0.0.0',
+            port: 8103
+        }));
+});
+
+
 gulp.task('watch', function () {
-    livereload.listen();
-    gulp.watch('less/*.less', ['less']);
-});
-
-// Get one .styl file and render
-gulp.task('one', function () {
-    return gulp.src('./css/one.styl')
-        .pipe(stylus())
-        .pipe(gulp.dest('./css/build'));
-});
-
-// Options
-// Options compress
-gulp.task('compress', function () {
-    return gulp.src('./css/compressed.styl')
-        .pipe(stylus({compress: true}))
-        .pipe(gulp.dest('./css/build'));
-});
-
-
-// Set linenos
-gulp.task('linenos', function () {
-    return gulp.src('./css/linenos.styl')
-        .pipe(stylus({linenos: true}))
-        .pipe(gulp.dest('./css/build'));
-});
-
-// Include css
-// Stylus has an awkward and perplexing 'include css' option
-gulp.task('include-css', function () {
-    return gulp.src('./css/*.styl')
-        .pipe(stylus({
-            'include css': true
-        }))
-        .pipe(gulp.dest('./'));
-
-});
-
-// External sourcemaps
-gulp.task('sourcemaps-external', function () {
-    return gulp.src('./css/sourcemaps-external.styl')
-        .pipe(sourcemaps.init())
-        .pipe(stylus())
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./css/build'));
+    livereload.listen({
+        port: 35731
+    });
+    gulp.watch(paths.ts, ['run-js']);
+    gulp.watch(paths.stylus, ['run-stylus']);
 });
 
 
 // Default gulp task to run
-gulp.task('default', ['one', 'compress', 'linenos', 'sourcemaps-inline', 'sourcemaps-external', 'pass-object']);
+gulp.task('default', ['run', 'watch']);
 
