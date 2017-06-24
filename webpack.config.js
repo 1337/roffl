@@ -10,7 +10,11 @@ module.exports = {
         app: './src/js/index.tsx'
     },
     resolve: {
-        extensions: [".ts", ".js", ".tsx", ".jsx"]
+        extensions: [
+            ".ts", ".tsx",
+            ".js", ".jsx",
+            ".styl"
+        ]
     },
     output: {
         filename: 'app.bundle.js',
@@ -22,6 +26,14 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 loader: 'awesome-typescript-loader'
+            },
+            {
+                test: /\.css$/,
+                loader: "style-loader!css-loader"
+            },
+            {
+                test: /\.styl$/,
+                loader: 'style-loader!css-loader!stylus-loader'
             }
         ]
     },
@@ -43,5 +55,4 @@ module.exports = {
         compress: true,
         port: 8103
     }
-
 };
