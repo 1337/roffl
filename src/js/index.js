@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import App from './App';
-
 require("../css/index.styl");
-
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(React.createElement(App, null), document.getElementById('app'));
+//# sourceMappingURL=index.js.map
