@@ -1,14 +1,26 @@
 {
-    "compilerOptions": {
-        "target": "es5",
-        "noImplicitAny": false,
-        "outDir": "www",
-        "rootDir": ".",
-        "sourceMap": false,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
-    },
-    "include": [
-        "./src/js/**/*"
-    ]
+  "compilerOptions": {
+    "target": "es5",
+    "noImplicitAny": false,
+    "outDir": "www",
+    "rootDirs": [
+      ".",
+      "node_modules",
+      "src/js"
+    ],
+    "sourceMap": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "es2015"
+  },
+  "include": [
+    "./src/js/**/*"
+  ],
+  "allowJs": true,
+  "inlineSourceMap": true,
+  "target": "ES5",
+  "lib": [
+    "DOM",
+    "ES2015"
+  ]
 }
