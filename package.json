@@ -38,5 +38,8 @@
         "platforms": [
             "android"
         ]
+    },
+    "scripts": {
+        "webserver": "webpack-dev-server"
     }
 }
