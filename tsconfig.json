@@ -7,7 +7,8 @@
     "noImplicitAny": false,
     "removeComments": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "jsx": "react"
   },
   "allowJs": true,
   "inlineSourceMap": true,
@@ -19,5 +20,7 @@
   "exclude": [
     "node_modules"
   ],
-  "awesomeTypescriptLoaderOptions": {}
+  "awesomeTypescriptLoaderOptions": {
+    "useCache": true
+  }
 }

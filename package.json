@@ -23,6 +23,8 @@
         "gulp-webserver": "^0.9.1",
         "lodash": "^4.17.4",
         "react": "^15.6.1",
+        "react-dom": "^15.6.1",
+        "react-router": "^4.1.1",
         "stylus": "^0.54.5",
         "tslint": "^5.4.3",
         "typescript": "^2.3.4",
@@ -40,6 +42,7 @@
         ]
     },
     "scripts": {
-        "webserver": "webpack-dev-server"
+        "webserver": "webpack-dev-server",
+        "build": "webpack"
     }
 }
