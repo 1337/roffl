@@ -39,7 +39,18 @@ module.exports = {
         ]
     },
     plugins: [
-        new BundleAnalyzerPlugin()
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+            }
+        }),
+        new webpack.optimize.AggressiveMergingPlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            compressor: {
+                warnings: true
+            }
+        })
     ],
     devServer: {
         contentBase: path.join(__dirname, "www"),

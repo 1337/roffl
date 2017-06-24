@@ -10,6 +10,7 @@
         "awesome-typescript-loader": "^3.1.3",
         "cordova": "7",
         "cordova-android": "^6.2.3",
+        "cordova-plugin-splashscreen": "^4.0.3",
         "cordova-plugin-whitelist": "^1.3.2",
         "css-loader": "^0.28.4",
         "gulp": "^3.9.1",
@@ -24,6 +25,10 @@
         "gulp-util": "^3.0.8",
         "gulp-webserver": "^0.9.1",
         "lodash": "^4.17.4",
+        "preact": "^8.1.0",
+        "preact-compat": "^3.16.0",
+        "preact-render-to-string": "^3.6.3",
+        "preact-router": "^2.5.2",
         "react": "^15.6.1",
         "react-dom": "^15.6.1",
         "react-router": "^4.1.1",
@@ -35,11 +40,13 @@
         "vue": "^2.3.4",
         "vue-cli": "^2.8.2",
         "webpack": "^3.0.0",
+        "webpack-bundle-analyzer": "^2.8.2",
         "webpack-dev-server": "^2.5.0"
     },
     "cordova": {
         "plugins": {
-            "cordova-plugin-whitelist": {}
+            "cordova-plugin-whitelist": {},
+            "cordova-plugin-splashscreen": {}
         },
         "platforms": [
             "android"

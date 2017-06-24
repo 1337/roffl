@@ -1,4 +1,4 @@
 #!/bin/bash
 
-webpack
+webpack -p --config webpack.production.js
 cordova run android

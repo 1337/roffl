@@ -1,6 +1,17 @@
-import React, { Component } from 'react'
-import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router'
+import React, { Component } from 'react';
+import NavBar from './NavBar';
 
-const App = () => <h1>Hello World!</h1>
 
-export default App
+function App() {
+    return (
+        <div>
+            <NavBar></NavBar>
+            <side-menu></side-menu>
+            <content>
+                <h1>Hello world!</h1>
+            </content>
+        </div>
+    );
+}
+
+export default App;
