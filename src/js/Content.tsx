@@ -19,7 +19,16 @@ class Content extends Component {
             return (
                 <div>{
                     self.state.posts.map(function (post, i) {
-                        return <div>{self.state.posts[i].title}</div>;
+                        let imgTag;
+                        if (post.preview && post.preview.images) {
+                            imgTag = <img src={post.preview.images[0].source.url} alt=""/>;
+                        }
+                        return (
+                            <div key={i}>
+                                <h3>{post.title}</h3>
+                                {imgTag}
+                            </div>
+                        );
                     })
                 }</div>
             );
