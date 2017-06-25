@@ -1,39 +1,29 @@
 import React, {Component} from 'react';
 import RedditService from './RedditService';
+import Post from './Post';
 
 class Content extends Component {
-    private props: any;
     public state: any;
     public setState: any;
 
     async componentDidMount() {
-        let res = await RedditService.get('pics');
-        const posts = res.data.children.map(obj => obj.data);
+        let posts = await RedditService.getPosts('funny');
         console.log(posts);
         this.setState({posts});
     }
 
     render() {
-        const self = this;
-        if (this.state && this.state.posts) {
-            return (
-                <div>{
-                    self.state.posts.map(function (post, i) {
-                        let imgTag;
-                        if (post.preview && post.preview.images) {
-                            imgTag = <img src={post.preview.images[0].source.url} alt=""/>;
-                        }
-                        return (
-                            <div key={i}>
-                                <h3>{post.title}</h3>
-                                {imgTag}
-                            </div>
-                        );
-                    })
-                }</div>
-            );
+        if (!(this.state && this.state.posts)) {
+            // No posts
+            return <div></div>;
         }
-        return <div></div>;
+        return (
+            <div>{
+                this.state.posts.map(function (post, i) {
+                    return <Post post={post} key={i}></Post>;
+                })
+            }</div>
+        );
     }
 }
 

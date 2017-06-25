@@ -14,9 +14,11 @@ export default class NavBar extends Component {
 
     render() {
         return (
-            <div>
-                {this.state.sub}
-            </div>
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="#" className="brand-logo">Roffl</a>
+                </div>
+            </nav>
         );
     }
 }

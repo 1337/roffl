@@ -15,6 +15,10 @@ module.exports = {
             ".ts", ".tsx",
             ".js", ".jsx",
             ".styl"
+        ],
+        modules: [
+            "node_modules",
+            path.resolve(__dirname, "src/js")
         ]
     },
     output: {
@@ -35,11 +39,14 @@ module.exports = {
             {
                 test: /\.styl$/,
                 loader: 'style-loader!css-loader!stylus-loader'
+            },
+            {
+                test: /\.(eot|svg|ttf|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: 'file-loader'
             }
         ]
     },
     plugins: [
-        new BundleAnalyzerPlugin()
     ],
     devServer: {
         contentBase: path.join(__dirname, "www"),
